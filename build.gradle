@@ -6,9 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 31
-
-    useLibrary 'org.apache.http.legacy'
+    compileSdk 25
 }
 
 group 'com.github.wechatpay-apiv3'
