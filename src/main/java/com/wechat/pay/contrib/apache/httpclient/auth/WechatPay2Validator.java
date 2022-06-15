@@ -8,17 +8,16 @@ import static com.wechat.pay.contrib.apache.httpclient.constant.WechatPayHttpHea
 import static com.wechat.pay.contrib.apache.httpclient.constant.WechatPayHttpHeaders.WECHAT_PAY_TIMESTAMP;
 
 import com.wechat.pay.contrib.apache.httpclient.Validator;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.time.DateTimeException;
-import java.time.Duration;
-import java.time.Instant;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author xy-peng
@@ -85,17 +84,20 @@ public class WechatPay2Validator implements Validator {
             }
         }
 
-        String timestampStr = header.getValue();
-        try {
-            Instant responseTime = Instant.ofEpochSecond(Long.parseLong(timestampStr));
-            // 拒绝过期应答
-            if (Duration.between(responseTime, Instant.now()).abs().toMinutes() >= RESPONSE_EXPIRED_MINUTES) {
-                throw parameterError("timestamp=[%s] expires, request-id=[%s]", timestampStr, requestId);
-            }
-        } catch (DateTimeException | NumberFormatException e) {
-            throw parameterError("invalid timestamp=[%s], request-id=[%s]", timestampStr, requestId);
-        }
-    }
+    //        String timestampStr = header.getValue();
+    //        try {
+    //            Instant responseTime = Instant.ofEpochSecond(Long.parseLong(timestampStr));
+    //            // 拒绝过期应答
+    //            if (Duration.between(responseTime, Instant.now()).abs().toMinutes() >=
+    // RESPONSE_EXPIRED_MINUTES) {
+    //                throw parameterError("timestamp=[%s] expires, request-id=[%s]", timestampStr,
+    // requestId);
+    //            }
+    //        } catch (DateTimeException | NumberFormatException e) {
+    //            throw parameterError("invalid timestamp=[%s], request-id=[%s]", timestampStr,
+    // requestId);
+    //        }
+  }
 
     protected final String buildMessage(CloseableHttpResponse response) throws IOException {
         String timestamp = response.getFirstHeader(WECHAT_PAY_TIMESTAMP).getValue();

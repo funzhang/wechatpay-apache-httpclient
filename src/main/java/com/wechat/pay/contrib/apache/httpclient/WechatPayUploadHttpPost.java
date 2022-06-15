@@ -3,13 +3,12 @@ package com.wechat.pay.contrib.apache.httpclient;
 import static org.apache.http.HttpHeaders.ACCEPT;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URLConnection;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
 
 /**
  * @author xy-peng
@@ -78,12 +77,12 @@ public class WechatPayUploadHttpPost extends HttpPost {
                 throw new IllegalArgumentException("媒体文件元信息为空");
             }
             WechatPayUploadHttpPost request = new WechatPayUploadHttpPost(uri, meta);
-            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-            entityBuilder.setMode(HttpMultipartMode.RFC6532)
-                    .addBinaryBody("file", fileInputStream, fileContentType, fileName)
-                    .addTextBody("meta", meta, APPLICATION_JSON);
-            request.setEntity(entityBuilder.build());
-            request.addHeader(ACCEPT, APPLICATION_JSON.toString());
+      //            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+      //            entityBuilder.setMode(HttpMultipartMode.RFC6532)
+      //                    .addBinaryBody("file", fileInputStream, fileContentType, fileName)
+      //                    .addTextBody("meta", meta, APPLICATION_JSON);
+      //            request.setEntity(entityBuilder.build());
+      request.addHeader(ACCEPT, APPLICATION_JSON.toString());
             return request;
         }
     }
