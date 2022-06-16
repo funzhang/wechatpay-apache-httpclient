@@ -27,7 +27,7 @@ public class RsaCryptoUtil {
       cipher.init(Cipher.ENCRYPT_MODE, certificate.getPublicKey());
       byte[] data = message.getBytes(StandardCharsets.UTF_8);
       byte[] ciphertext = cipher.doFinal(data);
-      return Base64.encodeToString(ciphertext, Base64.DEFAULT);
+      return Base64.encodeToString(ciphertext, Base64.NO_WRAP);
 
     } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
       throw new RuntimeException("当前Java环境不支持RSA v1.5/OAEP", e);
@@ -43,7 +43,7 @@ public class RsaCryptoUtil {
     try {
       Cipher cipher = Cipher.getInstance(TRANSFORMATION);
       cipher.init(Cipher.DECRYPT_MODE, privateKey);
-      byte[] data = Base64.decode(ciphertext, Base64.DEFAULT);
+      byte[] data = Base64.decode(ciphertext, Base64.NO_WRAP);
       return new String(cipher.doFinal(data), StandardCharsets.UTF_8);
 
     } catch (NoSuchPaddingException | NoSuchAlgorithmException e) {

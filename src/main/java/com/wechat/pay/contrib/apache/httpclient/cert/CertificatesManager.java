@@ -87,7 +87,7 @@ public class CertificatesManager {
         Signature sign = Signature.getInstance("SHA256withRSA");
         sign.initVerify(certificate);
         sign.update(message);
-        return sign.verify(Base64.decode(signature, Base64.DEFAULT));
+        return sign.verify(Base64.decode(signature, Base64.NO_WRAP));
       } catch (NoSuchAlgorithmException e) {
         throw new RuntimeException("当前Java环境不支持SHA256withRSA", e);
       } catch (SignatureException e) {

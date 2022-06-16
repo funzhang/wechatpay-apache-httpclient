@@ -30,7 +30,7 @@ public class PemUtil {
 
     try {
       KeyFactory kf = KeyFactory.getInstance("RSA");
-      return kf.generatePrivate(new PKCS8EncodedKeySpec(Base64.decode(privateKey, Base64.DEFAULT)));
+      return kf.generatePrivate(new PKCS8EncodedKeySpec(Base64.decode(privateKey, Base64.NO_WRAP)));
 
     } catch (NoSuchAlgorithmException e) {
       throw new RuntimeException("当前Java环境不支持RSA", e);

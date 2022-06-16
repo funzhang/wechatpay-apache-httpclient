@@ -28,7 +28,7 @@ public class PrivateKeySigner implements Signer {
       sign.initSign(privateKey);
       sign.update(message);
       return new SignatureResult(
-          Base64.encodeToString(sign.sign(), Base64.DEFAULT), certificateSerialNumber);
+          Base64.encodeToString(sign.sign(), Base64.NO_WRAP), certificateSerialNumber);
 
     } catch (NoSuchAlgorithmException e) {
       throw new RuntimeException("当前Java环境不支持SHA256withRSA", e);
