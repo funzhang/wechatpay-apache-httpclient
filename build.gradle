@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk 25
 
-    useLibrary 'org.apache.http.legacy'
+//    useLibrary 'org.apache.http.legacy'
 }
 
 group 'com.github.wechatpay-apiv3'
@@ -39,14 +39,15 @@ ext {
 //}
 
 dependencies {
-//    api "org.apache.httpcomponents:httpclient:$httpclient_version"
-    api 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
+
+//    api 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 //
 //    implementation('org.apache.httpcomponents:httpmime:4.3.6') {
 //        exclude module: 'httpclient'
 //    }
 
-//    implementation "org.apache.httpcomponents:httpmime:$httpclient_version"
+    api "org.apache.httpcomponents:httpclient:$httpclient_version"
+    api "org.apache.httpcomponents:httpmime:$httpclient_version"
     implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     implementation "org.slf4j:slf4j-api:$slf4j_version"
     testImplementation "org.slf4j:slf4j-simple:$slf4j_version"
